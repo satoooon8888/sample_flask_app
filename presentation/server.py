@@ -7,7 +7,7 @@ app = Flask(__name__)
 # http://URL/ にGETリクエストが送信されるときに、この関数が処理される
 @app.get("/")
 def index():
-	return "Hello world"
+	return render_template("index.html")
 
 # もしターミナルから直接呼ばれたなら
 if __name__ == '__main__':
