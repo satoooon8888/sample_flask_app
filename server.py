@@ -11,10 +11,12 @@ from model.todo import Todo
 # Flaskアプリケーションの作成
 app = Flask(__name__)
 
+# データベースの接続
 @app.before_request
 def handle_before_request():
 	g.database = sqlite3.connect("db/todo.db")
 
+# データベースの接続解除
 @app.teardown_request
 def handle_teardown_request(exception):
 	g.database.close()
