@@ -11,8 +11,10 @@
 		<input type="submit" name="submit" value="Add">
 	</form>
 	<ul>
+		<!-- 渡されたtodo_listに応じてHTMLを繰り返し生成する -->
 		{% for todo in todo_list %}
 			<li>
+				<!-- {{変数}} で変数を埋め込める -->
 				<form action="/todo/{{todo.id}}/delete" method="POST">
 					{{todo.content}}
 					<input type="submit" name="submit" value="Delete">
