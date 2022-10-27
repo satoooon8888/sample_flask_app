@@ -2,8 +2,11 @@
 from flask import Flask, render_template, request, abort, redirect, url_for, g
 import sqlite3
 
-# /application/からtodoを立ち上げる
+# /application/から関数をimportする
 from application.todo import create_todo, get_todo_list
+
+# /model/からクラスをimportする
+from model.todo import Todo
 
 # Flaskアプリケーションの作成
 app = Flask(__name__)
@@ -32,7 +35,7 @@ def handle_create_todo():
 		return abort(400)
 
 	# todoを作成する
-	create_todo(g.database, todo)
+	create_todo(g.database, Todo(content = todo))
 	# http://URL/ にリダイレクトさせる
 	return redirect("/")
 
