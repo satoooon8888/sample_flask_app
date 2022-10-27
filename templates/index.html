@@ -3,9 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sample App</title>
+	<title>Sample Todo App</title>
 </head>
 <body>
-	<h1>This is PBL Sample</h1>
+	<form action="/todo" method="POST">
+		<input type="text" name="todo">
+		<input type="submit" name="submit" value="Add">
+	</form>
+	<ul>
+		{% for todo in todo_list %}
+			<li>{{todo}}</li>
+		{% endfor %}
+	</ul>
 </body>
 </html>
