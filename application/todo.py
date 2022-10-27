@@ -16,3 +16,8 @@ def get_todo_list(db):
 	cur.close()
 	return todo_list
 
+def delete_todo(db, todo_id):
+	cur = db.cursor()
+	cur.execute("DELETE FROM todo WHERE id = ?", (todo_id,))
+	db.commit()
+	cur.close()

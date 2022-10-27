@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, abort, redirect, url_for, g
 import sqlite3
 
 # /application/から関数をimportする
-from application.todo import create_todo, get_todo_list
+from application.todo import create_todo, get_todo_list, delete_todo
 
 # /model/からクラスをimportする
 from model.todo import Todo
@@ -36,6 +36,14 @@ def handle_create_todo():
 
 	# todoを作成する
 	create_todo(g.database, Todo(content = todo))
+	# http://URL/ にリダイレクトさせる
+	return redirect("/")
+
+# http://URL/todo/数字/delete にDELETEリクエストが送信されるときに、この関数が処理される
+@app.post("/todo/<int:todo_id>/delete")
+def handle_delete_todo(todo_id):
+	# todoを削除
+	delete_todo(g.database, todo_id)
 	# http://URL/ にリダイレクトさせる
 	return redirect("/")
 
