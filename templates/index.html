@@ -12,7 +12,12 @@
 	</form>
 	<ul>
 		{% for todo in todo_list %}
-			<li>{{todo.content}}</li>
+			<li>
+				<form action="/todo/{{todo.id}}/delete" method="POST">
+					{{todo.content}}
+					<input type="submit" name="submit" value="Delete">
+				</form>
+			</li>
 		{% endfor %}
 	</ul>
 </body>
